@@ -36,6 +36,10 @@ Fortunately, Github recently added a new trigger event `pull_request_target` whi
 
 **Optional** The pull request number, available in the github context: `${{ github.event.pull_request.number }}`. This number is automatically extracted from the environmental variables when the action triggers on `pull_request`. However, when the trigger used is `pull_request_target`, then this input must be used.
 
+### `disable-reviews`
+
+**Optional** Set to `true` to have the action skip the approval posting step and return a failure exit status code instead. 
+
 ## Example usage
 
 ### If you want to allow PRs from forks
