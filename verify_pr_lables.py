@@ -145,6 +145,7 @@ if pr_valid_labels:
     print(f'Success! This pull request contains the following valid labels: {pr_valid_labels}')
 
     if pr_reviews_disabled:
+        print('Exiting without an error code')
         exit(0)
 
     # If the last review done was approved, then don't approved it again
@@ -154,9 +155,10 @@ if pr_valid_labels:
         pr.create_review(event = 'APPROVE')
 else:
     # If there were not valid labels, then create a pull request review, requesting changes
-    print(f'Error! This pull request does not contain any of the valid labels: {valid_labels}')
+    print(f'Error! This pull request does not contain any of the valid labels: {valid_labels}', file=sys.stderr)
 
     if pr_reviews_disabled:
+        print('Exiting with an error code')
         exit(1)
 
     # If the last review done requested changes, then don't request changes again.
